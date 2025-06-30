@@ -7,7 +7,7 @@ on:
       - release/*
 
 env:
-  GH_PAT: ${{ secrets.GH_PAT }}
+  GH_TOKEN: ${{ secrets.GH_TOKEN }}
 
 jobs:
   build:
@@ -38,7 +38,4 @@ jobs:
         run: |
           npm install -g semantic-release @semantic-release/exec @semantic-release/git @semantic-release/github conventional-changelog-conventionalcommits
       - name: Run semantic-release
-        env:
-          GH_PAT: ${{ secrets.GH_PAT }}
-        run: |
-          npx semantic-release
+        run: npx semantic-release
