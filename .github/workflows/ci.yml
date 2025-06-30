@@ -6,9 +6,6 @@ on:
       - main
       - release/*
 
-env:
-  GH_TOKEN: ${{ secrets.GH_TOKEN }}
-
 jobs:
   build:
     name: Build & Test
@@ -28,6 +25,8 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/heads/release/')
+    env:  # ✅ This ensures semantic-release picks it up
+      GH_TOKEN: ${{ secrets.GH_TOKEN }}
     steps:
       - uses: actions/checkout@v4
       - name: Use Node.js 20
