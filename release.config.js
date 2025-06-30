@@ -1,4 +1,3 @@
-// ✅ No need to hardcode it anymore
 module.exports = {
   branches: ["main"],
   plugins: [
