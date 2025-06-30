@@ -44,10 +44,12 @@ jobs:
       - name: Debug token presence
         run: echo "GH_TOKEN is ${GH_TOKEN:0:4}********"
 
-      - name: Configure Git user
+      - name: Configure git to use token for auth
         run: |
-          git config user.name "Lakshmisriram6"
-          git config user.email "12345678+Lakshmisriram6@users.noreply.github.com"
+          git config --global user.name "Lakshmisriram6"
+          git config --global user.email "12345678+Lakshmisriram6@users.noreply.github.com"
+          git config --global credential.helper store
+          echo "https://${GH_TOKEN}:x-oauth-basic@github.com" > ~/.git-credentials
 
       - name: Run semantic-release
         run: npx semantic-release

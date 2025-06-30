@@ -1,4 +1,5 @@
 module.exports = {
+  repositoryUrl: "https://github.com/Lakshmisriram6/semantic-release-poc.git",
   branches: ["main"],
   plugins: [
     "@semantic-release/commit-analyzer",
