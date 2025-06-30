@@ -24,32 +24,27 @@ jobs:
     needs: build
     if: github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/heads/release/')
     env:
-      GH_TOKEN: ${{ secrets.GH_TOKEN }}
+      GH_PAT: ${{ secrets.GH_PAT }}  # Use GH_PAT, NOT GITHUB_TOKEN
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code with full history
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-      - name: Use Node.js 20
+      - name: Setup Node.js 20
         uses: actions/setup-node@v3
         with:
           node-version: 20
 
-      - name: Install semantic-release plugins
+      - name: Install semantic-release globally
         run: |
-          npm install -g semantic-release \
-            @semantic-release/exec \
-            @semantic-release/git \
-            @semantic-release/github \
-            conventional-changelog-conventionalcommits
+          npm install -g semantic-release @semantic-release/git @semantic-release/github conventional-changelog-conventionalcommits
 
-      - name: Debug token presence
-        run: echo "GH_TOKEN is ${GH_TOKEN:0:4}********"
-
-      - name: Configure git to use token for auth
+      - name: Configure Git user
         run: |
-          git config --global user.name "Lakshmisriram6"
-          git config --global user.email "12345678+Lakshmisriram6@users.noreply.github.com"
-          git config --global credential.helper store
-          echo "https://${GH_TOKEN}:x-oauth-basic@github.com" > ~/.git-credentials
+          git config --global user.email "ci-bot@example.com"
+          git config --global user.name "CI Bot"
 
       - name: Run semantic-release
-        run: npx semantic-release
+        run: |
+          npx semantic-release
