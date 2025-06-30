@@ -1,6 +1,5 @@
-// release.config.js
-
 module.exports = {
+  repositoryUrl: "https://x-access-token:${process.env.GH_PAT}@github.com/Lakshmisriram6/semantic-release-poc.git", 
   branches: ["main"],
   plugins: [
     "@semantic-release/commit-analyzer",

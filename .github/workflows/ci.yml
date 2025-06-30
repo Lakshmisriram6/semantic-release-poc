@@ -6,6 +6,8 @@ on:
       - main
       - release/*
 
+env:
+  GITHUB_TOKEN: ${{ secrets.GH_PAT }}
 jobs:
   build:
     name: Build & Test
