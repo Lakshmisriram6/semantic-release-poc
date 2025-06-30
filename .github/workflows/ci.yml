@@ -1,35 +1,13 @@
-name: Semantic Release POC
+name: Semantic Release CI
 
 on:
   push:
     branches:
       - main
-      - release/*
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: Set up JDK 17
-        uses: actions/setup-java@v3
-        with:
-          java-version: '17'
-          distribution: 'temurin'
-
-      - name: Build with Maven
-        run: mvn clean package
-
   release:
     runs-on: ubuntu-latest
-    needs: build
-    if: github.ref == 'refs/heads/main'
-    env:
-      GH_PAT: ${{ secrets.GH_PAT }}
     steps:
       - name: Checkout code with full history
         uses: actions/checkout@v4
@@ -41,12 +19,12 @@ jobs:
         with:
           node-version: 20
 
-      - name: Install semantic-release and required plugins
+      - name: Install semantic-release CLI + plugins
         run: |
           npm install -g semantic-release \
+            @semantic-release/exec \
             @semantic-release/git \
             @semantic-release/github \
-            @semantic-release/exec \
             conventional-changelog-conventionalcommits
 
       - name: Configure Git user
@@ -55,9 +33,13 @@ jobs:
           git config --global user.name "CI Bot"
 
       - name: Set Git remote to use GH_PAT
+        env:
+          GH_PAT: ${{ secrets.GH_PAT }}
         run: |
           git remote set-url origin https://x-access-token:${GH_PAT}@github.com/Lakshmisriram6/semantic-release-poc.git 
 
       - name: Run semantic-release
+        env:
+          GH_PAT: ${{ secrets.GH_PAT }}
         run: |
           npx semantic-release
