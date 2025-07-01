@@ -10,7 +10,7 @@ public class DemoApplication {
         SpringApplication.run(DemoApplication.class, args);
         System.out.println("hello semantic release");
         greetUser();    // existing feature
-        greetUser1();   // fixed naming convention
+        greetUSer1();   // fixed naming convention
     }
 
     private static void greetUser() {
@@ -18,7 +18,7 @@ public class DemoApplication {
     }
 
     // ✅ Renamed method to fix casing
-    private static void greetUser1() {
+    private static void greetUSer1() {
         System.out.println("This is a patch-level fix for semantic-release.");
     }
 }
