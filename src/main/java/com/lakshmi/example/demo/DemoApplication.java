@@ -10,7 +10,7 @@ public class DemoApplication {
         SpringApplication.run(DemoApplication.class, args);
         System.out.println("hello semantic release");
         greetUser("Lakshmi");    // BREAKING CHANGE: now requires a name
-        greetUser1();
+        greetUser2();
     }
 
     // 🔺 BREAKING CHANGE: changed method to require a String argument
@@ -18,7 +18,7 @@ public class DemoApplication {
         System.out.println("Hello, " + name + "! This is a major version change.");
     }
 
-    private static void greetUser1() {
+    private static void greetUser2() {
         System.out.println("This is a patch-level fix for semantic-release.");
     }
 }
