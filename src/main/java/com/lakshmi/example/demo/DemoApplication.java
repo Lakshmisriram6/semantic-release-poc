@@ -9,14 +9,15 @@ public class DemoApplication {
     public static void main(String[] args) {
         SpringApplication.run(DemoApplication.class, args);
         System.out.println("hello semantic release");
-        greetUser(); // New feature added
-		greetUSer1();
+        greetUser();    // existing feature
+        greetUser1();   // fixed typo in method call (was greetUSer1)
     }
 
     private static void greetUser() {
         System.out.println("This is a minor feature update for semantic-release.");
     }
-	 private static void greetUser1() {
+
+    private static void greetUser1() {
         System.out.println("This is a minor feature update for semantic-release.");
     }
 }
