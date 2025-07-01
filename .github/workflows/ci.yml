@@ -8,6 +8,7 @@ on:
 jobs:
   release:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code with full history
         uses: actions/checkout@v4
@@ -32,14 +33,10 @@ jobs:
           git config --global user.email "ci-bot@example.com"
           git config --global user.name "CI Bot"
 
-      - name: Set Git remote to use GH_PAT
-        env:
-          GH_PAT: ${{ secrets.GH_PAT }}
-        run: |
-          git remote set-url origin https://x-access-token:${GH_PAT}@github.com/Lakshmisriram6/semantic-release-poc.git 
+      # No need to change remote URL manually; let semantic-release handle it with GITHUB_TOKEN
 
       - name: Run semantic-release
         env:
-          GH_PAT: ${{ secrets.GH_PAT }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           npx semantic-release
