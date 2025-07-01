@@ -9,16 +9,16 @@ public class DemoApplication {
     public static void main(String[] args) {
         SpringApplication.run(DemoApplication.class, args);
         System.out.println("hello semantic release");
-        greetUser();    // existing feature
-        greetUSer1();   // fixed naming convention
+        greetUser("Lakshmi");    // BREAKING CHANGE: now requires a name
+        greetUser1();
     }
 
-    private static void greetUser() {
-        System.out.println("This is a minor feature update for semantic-release.");
+    // 🔺 BREAKING CHANGE: changed method to require a String argument
+    private static void greetUser(String name) {
+        System.out.println("Hello, " + name + "! This is a major version change.");
     }
 
-    // ✅ Renamed method to fix casing
-    private static void greetUSer1() {
+    private static void greetUser1() {
         System.out.println("This is a patch-level fix for semantic-release.");
     }
 }
