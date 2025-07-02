@@ -18,5 +18,7 @@ public class DemoApplication {
     }
 	private static void greetUser() {
         System.out.println("Welcome to the minor release demo!");//Patch
+		System.out.println("hello semantic release - patch update");
+
     }
 }
