@@ -9,5 +9,10 @@ public class DemoApplication {
     public static void main(String[] args) {
         SpringApplication.run(DemoApplication.class, args);
         System.out.println("hello semantic release");
-	}
+        greetNewUser();  // New feature added
+    }
+
+    private static void greetNewUser() {
+        System.out.println("Welcome to the minor release demo!");
+    }
 }
