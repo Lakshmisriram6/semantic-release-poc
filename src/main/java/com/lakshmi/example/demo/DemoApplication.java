@@ -17,6 +17,6 @@ public class DemoApplication {
         System.out.println("Welcome to the minor release demo!");
     }
 	private static void greetUser() {
-        System.out.println("Welcome to the minor release demo!");
+        System.out.println("Welcome to the minor release demo!");//Patch
     }
 }
