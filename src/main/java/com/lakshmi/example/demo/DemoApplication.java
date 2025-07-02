@@ -10,14 +10,15 @@ public class DemoApplication {
         SpringApplication.run(DemoApplication.class, args);
         System.out.println("hello semantic release");
         
-		hello();
+		hello1();
 		
     }
 
     
-	 private static void hello() {
+	 private static void hello1() {
         System.out.println("Welcome to the minor release demo!");
 		System.out.println("hello");
+		
     }
 	
 }
